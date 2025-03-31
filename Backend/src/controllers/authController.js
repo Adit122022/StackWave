@@ -2,8 +2,8 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+const generateToken = (id , role) => {
+    return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };
 
 // User Signup
@@ -21,7 +21,8 @@ const signup = async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            token: generateToken(user._id),
+            role: user.role, // Include role in response
+            token: generateToken(user._id , user.role), // Pass role to token generation
         });
     } catch (error) {
         res.status(500).json({ message: 'Signup failed', error });
@@ -43,7 +44,7 @@ const login = async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            token: generateToken(user._id),
+            token: generateToken(user._id , user.role), // Pass role to token generation
         });
     } catch (error) {
         res.status(500).json({ message: 'Login failed', error });

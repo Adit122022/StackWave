@@ -8,6 +8,9 @@ const connectDB = require('./db/db');
 // Import Routes
 const userRoutes = require('./routes/userRoutes'); 
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const postRoutes = require('./routes/postRoutes');
+
 
 const app = express();
 
@@ -22,6 +25,8 @@ app.use(cookieParser());
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/posts', postRoutes);
 
 
 
