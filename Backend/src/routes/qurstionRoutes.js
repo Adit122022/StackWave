@@ -2,13 +2,16 @@ const express = require('express');
 const router = express.Router();
 const { protect } = require('../middlewares/authMiddleware');
 
-const {  Create, getAllQuestion } = require('../controllers/questionController');
-
+const {  Create, getAllQuestion, getOneQuestion, Delete, Update } = require('../controllers/questionController');
+// ✅ Create a question
 router.post('/', protect, Create);
+// ✅ Get all questions
 router.get('/',getAllQuestion);
+// ✅ Get a single question
 router.get('/:id',getOneQuestion);
-router.put('/:id', protect, Update);
+// ✅ Update a question (Only Author can update)
+router.patch('/update/:id', protect, Update);
 // ✅ Delete a question (Only Author can delete)
-router.delete('/:id', protect, Delete);
+router.delete('/delete/:id', protect, Delete);
 
 module.exports = router;

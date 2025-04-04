@@ -9,7 +9,7 @@ const connectDB = require('./db/db');
 const userRoutes = require('./routes/userRoutes'); 
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-const postRoutes = require('./routes/postRoutes');
+const Question = require('./routes/qurstionRoutes');
 
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/questions', postRoutes);
+app.use('/api/questions', Question);
 
 
 
