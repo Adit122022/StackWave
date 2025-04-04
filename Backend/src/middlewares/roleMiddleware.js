@@ -2,9 +2,6 @@
 
 const authorizeRoles = (...roles) => {
     return async(req, res, next) => {
-
-        // Example of fetching user from database (if you're doing this)
-        // Log for debugging
         console.log('User :', req.user);
         console.log('User role:', req.user.role);
         console.log('Required roles:', roles);
